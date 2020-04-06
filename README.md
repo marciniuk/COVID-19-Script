@@ -30,3 +30,7 @@ $ git clone https://gitlab.com/xXBlackMaskXx/dmenu
 $ cd dmenu
 $ sudo make clean install
 ```
+
+##### Where did this idea come from?
+
+My brilliant friend [Dawid Potocki](https://github.com/dawidpotocki) interested me in this by creating his script for polybar - and I decided to develop it
