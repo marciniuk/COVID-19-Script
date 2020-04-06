@@ -33,4 +33,6 @@ $ sudo make clean install
 
 ##### Where did this idea come from?
 
-My brilliant friend [Dawid Potocki](https://github.com/dawidpotocki) interested me in this by creating his script for polybar - and I decided to develop it
+My brilliant friend [Dawid Potocki](https://github.com/dawidpotocki) interested me in this by creating his script for polybar - and I decided to develop it.
+
+##### (Demonstration video)[https://gitlab.com/xXBlackMaskXx/covid-19/-/raw/master/demonstration_video.mkv]
