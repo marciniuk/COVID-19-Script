@@ -37,4 +37,4 @@ My brilliant friend [Dawid Potocki](https://github.com/dawidpotocki) interested 
 
 ##### A small sample
 
-(Demonstration video)[https://gitlab.com/xXBlackMaskXx/covid-19/-/raw/master/demonstration_video.mkv]
+!(Demonstration video)[https://gitlab.com/xXBlackMaskXx/covid-19/-/raw/master/demonstration_video.mkv]
