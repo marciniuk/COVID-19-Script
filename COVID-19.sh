@@ -39,8 +39,9 @@ esac
 todaycases="$(echo "$stats" | jq '.todayCases')"
     deaths="$(echo "$stats" | jq '.deaths')"
  recovered="$(echo "$stats" | jq '.recovered')"
+     tests="$(echo "$stats" | jq '.tests')"
 
-case "$(printf "  close\n  More info\n  return\n \n  $active \n  $todaycases \n  $deaths \n %s $recovered " | dmenu -h 33 -i -p "$place")" in
+case "$(printf "  close\n  More info\n  return\n \n  $active \n  $todaycases \n  $deaths \n  $recovered \n  %s$tests" | dmenu -h 33 -i -p "$place")" in
 	"  More info")
 		stats="$(curl -s $location)"
 		cases="$(echo "$stats" | jq '.cases')"
@@ -50,11 +51,12 @@ case "$(printf "  close\n  More info\n  return\n \n  $active \n  
 		critical="$(echo "$stats" | jq '.critical')"
 		deaths="$(echo "$stats" | jq '.deaths')"
 		todaydeaths="$(echo "$stats" | jq '.todayDeaths')"
+		tests="$(echo "$stats" | jq '.tests')"
+		testsperonemillion="$(echo "$stats" | jq '.testsPerOneMillion')"
 		casesperonemillion="$(echo "$stats" | jq '.casesPerOneMillion')"
 		deathsperonemillion="$(echo "$stats" | jq '.deathsPerOneMillion')"
 
-		stats2="$(curl -s "https://corona.lmao.ninja/all")"
-		lastupdate="$(echo "$stats2" | jq '.updated')"
+		lastupdate="$(echo "$stats" | jq '.updated')"
 		time="$(echo "$lastupdate" | cut -b -10)"
 		time2="$(date -d @"$time")"
 
@@ -65,11 +67,14 @@ case "$(printf "  close\n  More info\n  return\n \n  $active \n  
 		cri=" Critical: $critical"
 		dea=" Deaths: $deaths"
 		tde=" Today deaths: $todaydeaths"
+		tes=" Tests: $tests"
+
+		tpm=" T/M: $testsperonemillion"
 		cpm=" C/M: $casesperonemillion"
 		dpm=" D/M: $deathsperonemillion"
 		tim=" $time2"
 
-		case "$(printf "  close\n  return\n \n $cas \n $act \n $tca \n $rec \n $cri \n $dea \n $tde \n $cpm \n $dpm \n \n %s$tim " | dmenu -h 33 -l 14 -i -p "$place")" in
+		case "$(printf "  close\n  return\n \n $cas \n $act \n $tca \n $rec \n $cri \n $dea \n $tde \n $tes \n $tpm \n $cpm \n $dpm \n \n %s$tim " | dmenu -h 33 -l 16 -i -p "$place")" in
 			"  return") bash /home/adrian/.scripts/covid-19.sh & exit 0;;
 			*)           exit 0
 		esac;;
