@@ -1,6 +1,6 @@
 # COVID-19
 
-What is COVID-19 commonly known as coronavirus? I think we all know. But we don't know one thing - how fast it spreads. This script, based on data downloaded from [NowelCOVID's website](https://corona.lmao.ninja), gives quick access to important information.
+What is COVID-19 commonly known as coronavirus? I think we all know. But we don't know one thing - how fast it spreads. This script, based on data downloaded from [NovelCOVID's website](https://corona.lmao.ninja), gives quick access to important information.
 
 ## Installation
 
