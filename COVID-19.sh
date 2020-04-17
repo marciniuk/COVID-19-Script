@@ -43,6 +43,7 @@ case "$(printf "  close\n  More info\n  return\n \n  $active \n  
 		testsperonemillion="$(echo "$stats" | jq '.testsPerOneMillion')"
 		casesperonemillion="$(echo "$stats" | jq '.casesPerOneMillion')"
 		deathsperonemillion="$(echo "$stats" | jq '.deathsPerOneMillion')"
+		percentageofdeath="$(echo " $deathsperonemillion $casesperonemillion" | awk '{print ($1 / $2 * 100)}' | cut -c -4)"
 
 		lastupdate="$(echo "$stats" | jq '.updated')"
 		time="$(echo "$lastupdate" | cut -b -10)"
@@ -61,10 +62,11 @@ case "$(printf "  close\n  More info\n  return\n \n  $active \n  
 		tpm=" T/M: $testsperonemillion"
 		cpm=" C/M: $casesperonemillion"
 		dpm=" D/M: $deathsperonemillion"
+		pod=" PoD: $percentageofdeath%%"
 		tim=" $time2"
 		acs=" Affected countries: $affectedcountries"
 
-		case "$(printf "  close\n  return\n \n $cas \n $act \n $tca \n $rec \n $cri \n $dea \n $tde \n $tes \n $tpm \n $cpm \n $dpm \n \n $tim \n %s$acs" | dmenu -h 33 -l 17 -i -p "$place")" in
+		case "$(printf "  close\n  return\n \n $cas \n $act \n $tca \n $rec \n $cri \n $dea \n $tde \n $tes \n $tpm \n $cpm \n $dpm \n $pod \n \n $tim \n %s$acs" | dmenu -h 33 -l 18 -i -p "$place")" in
 			"  return") bash /home/adrian/.scripts/covid-19.sh & exit 0;;
 			*)           exit 0
 		esac;;
