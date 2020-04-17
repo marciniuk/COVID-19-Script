@@ -2,34 +2,22 @@
 
 case "$(printf " Poland \n New Zealand \n China \n Italy \n USA \n World " | dmenu -h 33 -i -p '  Place  ')" in
 	" Poland ")
-		place=" Poland "      location="https://corona.lmao.ninja/countries/Poland";;
+		place=" Poland "      location="https://corona.lmao.ninja/v2/countries/Poland";;
 
 	" New Zealand ")
-		place=" New Zealand " location="https://corona.lmao.ninja/countries/New%20Zealand";;
+		place=" New Zealand " location="https://corona.lmao.ninja/v2/countries/New%20Zealand";;
 
 	" China ")
-		place=" China "       location="https://corona.lmao.ninja/countries/China";;
+		place=" China "       location="https://corona.lmao.ninja/v2/countries/China";;
 
 	" Italy ")
-		place=" Italy "       location="https://corona.lmao.ninja/countries/Italy";;
+		place=" Italy "       location="https://corona.lmao.ninja/v2/countries/Italy";;
 
 	" USA ")
-		place=" USA "         location="https://corona.lmao.ninja/countries/USA";;
+		place=" USA "         location="https://corona.lmao.ninja/v2/countries/USA";;
 
 	" World ")
-		stats="$(curl -s "https://corona.lmao.ninja/all")"
-		active="$(echo "$stats" | jq '.cases')"
-		deaths="$(echo "$stats" | jq '.deaths')"
-		recovered="$(echo "$stats" | jq '.recovered')"
-		lastupdate="$(echo "$stats" | jq '.updated')"
-		time="$(echo "$lastupdate" | cut -b -10)"
-		time2="$(date -d @"$time")"
-
-		case "$(printf "  close\n  return\n \n  $active %s\n  $deaths %s\n  $recovered %s\n  $time2 " | dmenu -h 33 -i -p ' World ')" in
-			"  return") bash /home/adrian/.scripts/covid-19.sh & exit 0;;
-			*) exit 0
-		esac
-		exit 0;;
+		place=" World "       location="https://corona.lmao.ninja/v2/all";;
 
 	*)  exit 0
 esac
@@ -59,6 +47,7 @@ case "$(printf "  close\n  More info\n  return\n \n  $active \n  
 		lastupdate="$(echo "$stats" | jq '.updated')"
 		time="$(echo "$lastupdate" | cut -b -10)"
 		time2="$(date -d @"$time")"
+		affectedcountries="$(curl -s https://corona.lmao.ninja/v2/all | jq '.affectedCountries')"
 
 		cas=" Cases: $cases"
 		act=" Active: $active"
@@ -73,8 +62,9 @@ case "$(printf "  close\n  More info\n  return\n \n  $active \n  
 		cpm=" C/M: $casesperonemillion"
 		dpm=" D/M: $deathsperonemillion"
 		tim=" $time2"
+		acs=" Affected countries: $affectedcountries"
 
-		case "$(printf "  close\n  return\n \n $cas \n $act \n $tca \n $rec \n $cri \n $dea \n $tde \n $tes \n $tpm \n $cpm \n $dpm \n \n %s$tim " | dmenu -h 33 -l 16 -i -p "$place")" in
+		case "$(printf "  close\n  return\n \n $cas \n $act \n $tca \n $rec \n $cri \n $dea \n $tde \n $tes \n $tpm \n $cpm \n $dpm \n \n $tim \n %s$acs" | dmenu -h 33 -l 17 -i -p "$place")" in
 			"  return") bash /home/adrian/.scripts/covid-19.sh & exit 0;;
 			*)           exit 0
 		esac;;
