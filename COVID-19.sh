@@ -5,33 +5,33 @@
 case "$(printf " Poland \n New Zealand \n China \n Italy \n USA \n World " | dmenu -h 33 -i -p '  Place  ')" in
 	" Poland ")
 		place=" Poland "
-		currently="https://corona.lmao.ninja/v2/countries/Poland"
-		yesterday="https://corona.lmao.ninja/v2/countries/Poland?yesterday"
+		currently="https://disease.sh/v2/countries/Poland"
+		yesterday="https://disease.sh/v2/countries/Poland?yesterday"
 		;;
 	" New Zealand ")
 		place=" New Zealand "
-		currently="https://corona.lmao.ninja/v2/countries/New%20Zealand"
-		yesterday="https://corona.lmao.ninja/v2/countries/New%20Zealand?yesterday"
+		currently="https://disease.sh/v2/countries/New%20Zealand"
+		yesterday="https://disease.sh/v2/countries/New%20Zealand?yesterday"
 		;;
 	" China ")
 		place=" China "
-		currently="https://corona.lmao.ninja/v2/countries/China"
-		yesterday="https://corona.lmao.ninja/v2/countries/China?yesterday"
+		currently="https://disease.sh/v2/countries/China"
+		yesterday="https://disease.sh/v2/countries/China?yesterday"
 		;;
 	" Italy ")
 		place=" Italy "
-		currently="https://corona.lmao.ninja/v2/countries/Italy"
-		yesterday="https://corona.lmao.ninja/v2/countries/Italy?yesterday"
+		currently="https://disease.sh/v2/countries/Italy"
+		yesterday="https://disease.sh/v2/countries/Italy?yesterday"
 		;;
 	" USA ")
 		place=" USA "
-		currently="https://corona.lmao.ninja/v2/countries/USA"
-		yesterday="https://corona.lmao.ninja/v2/countries/USA?yesterday"
+		currently="https://disease.sh/v2/countries/USA"
+		yesterday="https://disease.sh/v2/countries/USA?yesterday"
 		;;
 	" World ")
 		place=" World "
-		currently="https://corona.lmao.ninja/v2/all"
-		yesterday="https://corona.lmao.ninja/v2/all?yesterday"
+		currently="https://disease.sh/v2/all"
+		yesterday="https://disease.sh/v2/all?yesterday"
 		;;
 	*)  exit 0;;
 esac
@@ -55,7 +55,7 @@ database() {
 	lastupdate="$(echo "$stats" | jq '.updated')"
 	time="$(echo "$lastupdate" | cut -b -10)"
 	time2="$(date -d @"$time")"
-	affectedcountries="$(curl -s https://corona.lmao.ninja/v2/all | jq '.affectedCountries')"
+	affectedcountries="$(curl -s https://disease.sh/v2/all | jq '.affectedCountries')"
 
 	cas=" Cases: $cases"
 	act=" Active: $active"
